@@ -1,4 +1,10 @@
 package com.teamsparta.onlytodo.domain.user.model
 
-class Profile {
-}
+import jakarta.persistence.Column
+import jakarta.persistence.Embeddable
+
+@Embeddable
+data class Profile (
+    @Column(name = "nickname")
+    var nickname: String,
+)

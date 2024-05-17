@@ -1,4 +1,5 @@
 package com.teamsparta.onlytodo.domain.exception.dto
 
-class ErrorResponse {
-}
+data class ErrorResponse(
+    val message: String?
+)

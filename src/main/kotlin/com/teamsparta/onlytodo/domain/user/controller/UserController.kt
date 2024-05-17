@@ -1,8 +1,8 @@
-package com.teamsparta.todoapp.domain.user.controller
+package com.teamsparta.onlytodo.domain.user.controller
 
-import com.teamsparta.todoapp.domain.user.dto.SignUpRequest
-import com.teamsparta.todoapp.domain.user.dto.UpdateUserProfileRequest
-import com.teamsparta.todoapp.domain.user.dto.UserResponse
+import com.teamsparta.onlytodo.domain.user.dto.SignUpRequest
+import com.teamsparta.onlytodo.domain.user.dto.UpdateUserProfileRequest
+import com.teamsparta.onlytodo.domain.user.dto.UserResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping

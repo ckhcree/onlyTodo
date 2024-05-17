@@ -1,4 +1,7 @@
 package com.teamsparta.onlytodo.domain.todo.dto
 
-class CreateTodoRequest {
-}
+data class CreateTodoRequest(
+    val title: String,
+    val content: String,
+    val due: String?,
+)

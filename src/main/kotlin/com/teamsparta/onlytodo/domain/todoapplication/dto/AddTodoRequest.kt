@@ -1,4 +1,6 @@
 package com.teamsparta.onlytodo.domain.todoapplication.dto
 
-class AddTodoRequest {
-}
+data class AddTodoRequest (
+    val userId: Long
+)
+

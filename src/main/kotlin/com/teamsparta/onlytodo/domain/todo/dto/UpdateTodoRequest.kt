@@ -1,8 +1,7 @@
 package com.teamsparta.onlytodo.domain.todo.dto
 
-data class TodoResponse(
-    val id: Long,
+data class UpdateTodoRequest(
     val title: String,
+    val content: String,
     val due: String?,
-    val status: String,
 )
