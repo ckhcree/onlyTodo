@@ -8,6 +8,7 @@ import com.teamsparta.onlytodo.domain.todo.dto.UpdateTodoRequest
 import com.teamsparta.onlytodo.domain.todo.model.TodoEntity
 import com.teamsparta.onlytodo.domain.todo.model.toResponse
 import com.teamsparta.onlytodo.domain.todo.repository.TodoRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -15,14 +16,14 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class TodoServiceImpl(private val todoRepository: TodoRepository) : TodoService {
 
-    override fun getAllTodoList(): ArrayList<TodoResponse> {
-        return todoRepository.findAll().map{ it.toResponse()} // map부분 이해x
+    override fun getAllTodoList(): List<TodoResponse> {
+        return todoRepository.findAll().map{ it.toResponse()}
     }
 
     override fun getTodoById(todoId: Long): TodoResponse {
-        val todo = todoRepository.findById(todoId)
+        val todo = todoRepository.findByIdOrNull(todoId)
             ?: throw ModelNotFoundException("Todo", "todoId")
-        return todo.toResponse() // 찾은 todo를 toresponse 타입으로 변환하고싶음. 그런데 서비스에선 todoresponse임..
+        return todo.toResponse()
     }
 
     @Transactional
@@ -33,19 +34,22 @@ class TodoServiceImpl(private val todoRepository: TodoRepository) : TodoService 
                 title = todo.title,
                 content = todo.content,
                 name = todo.name,
-            )).toResponse() // toresponse 타입 어디서 생성되었는지 모름
+            )).toResponse()
     }
 
     @Transactional
     override fun updateTodo(todoId: Long, request: UpdateTodoRequest): TodoResponse {
-        // TODO
+        val todo = todoRepository.findByIdOrNull(todoId)
+        ?: throw ModelNotFoundException("Todo", "todoId")
+        todo.title = request.title
+        todo.content = request.content
+        return todoRepository.save(todo).toResponse()
     }
 
     @Transactional
     override fun deleteTodo(todoId: Long) {
-        val todo = todoRepository.findById(todoId)
+        val todo = todoRepository.findByIdOrNull(todoId)
             ?: throw ModelNotFoundException("Todo", "todoId")
-        todoRepository.deleteTodo(todo) // todorepository에 있는 todo를 삭제
+        todoRepository.delete(todo)
     }
-
 }
