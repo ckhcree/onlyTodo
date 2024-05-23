@@ -6,5 +6,6 @@ data class TodoResponse(
     val id: Long,
     val title: String,
     val content: String,
-    var createdtime: LocalDateTime
+    var createdtime: LocalDateTime,
+    var status: Boolean
 )

@@ -20,6 +20,9 @@ class TodoEntity (
     @Column(name = "name")
     var name: String,
 
+    @Column(name = "status")
+    var status: Boolean,
+
     ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,5 +37,6 @@ fun TodoEntity.toResponse()
         title = title,
         content = content,
         createdtime = createdtime,
+        status = status
     )
 }

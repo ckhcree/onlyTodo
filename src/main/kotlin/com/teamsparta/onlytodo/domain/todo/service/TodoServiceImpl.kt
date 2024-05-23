@@ -34,6 +34,7 @@ class TodoServiceImpl(private val todoRepository: TodoRepository) : TodoService 
                 title = todo.title,
                 content = todo.content,
                 name = todo.name,
+                status = false, // 기본값 false 한것 맞는지?
             )).toResponse()
     }
 
@@ -43,7 +44,8 @@ class TodoServiceImpl(private val todoRepository: TodoRepository) : TodoService 
         ?: throw ModelNotFoundException("Todo", "todoId")
         todo.title = request.title
         todo.content = request.content
-        return todoRepository.save(todo).toResponse()
+        todo.status = request.status
+        return todo.toResponse()
     }
 
     @Transactional
