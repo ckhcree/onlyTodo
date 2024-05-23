@@ -17,8 +17,8 @@ class TodoEntity (
     @Column(name = "createdtime")
     var createdtime: LocalDateTime = LocalDateTime.now(),
 
-    @Column(name = "name")
-    var name: String,
+    @Column(name = "category")
+    var category: String,
 
     @Column(name = "status")
     var status: Boolean,
@@ -37,6 +37,7 @@ fun TodoEntity.toResponse()
         title = title,
         content = content,
         createdtime = createdtime,
+        category = category,
         status = status
     )
 }
