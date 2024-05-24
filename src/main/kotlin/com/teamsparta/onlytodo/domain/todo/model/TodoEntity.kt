@@ -8,6 +8,7 @@ import java.time.LocalDateTime
 @Entity
 @Table(name = "todo")
 class TodoEntity (
+
     @Column(name = "title")
     var title: String,
 
@@ -21,7 +22,11 @@ class TodoEntity (
     var category: String,
 
     @Column(name = "status")
-    var status: Boolean,
+    var status: Boolean = false
+
+    //아래부분 주석처리 풀면 아이디가 오류나서 보류..
+//    @OneToMany(mappedBy = "todo", cascade = [(CascadeType.ALL)],orphanRemoval = true,fetch = FetchType.LAZY))
+//    var comments: MutableList<Comment> = mutableListOf()
 
     ) {
     @Id

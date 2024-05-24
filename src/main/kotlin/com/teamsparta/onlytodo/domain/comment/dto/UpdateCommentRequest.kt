@@ -1,4 +1,5 @@
 package com.teamsparta.onlytodo.domain.comment.dto
 
-class UpdateCommentRequest {
-}
+class UpdateCommentRequest (
+    val content: String
+)

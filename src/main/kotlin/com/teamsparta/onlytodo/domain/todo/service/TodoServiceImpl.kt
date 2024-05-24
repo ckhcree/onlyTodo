@@ -33,8 +33,7 @@ class TodoServiceImpl(private val todoRepository: TodoRepository) : TodoService 
             TodoEntity(
                 title = todo.title,
                 content = todo.content,
-                category = todo.category,
-                status = false, // 기본값 false 한것 맞는지?
+                category = todo.category
             )).toResponse()
     }
 
