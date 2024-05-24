@@ -7,13 +7,16 @@ import com.teamsparta.onlytodo.domain.comment.model.CommentEntity
 import com.teamsparta.onlytodo.domain.comment.model.toResponse
 import com.teamsparta.onlytodo.domain.comment.repository.CommentRepository
 import com.teamsparta.onlytodo.domain.exception.ModelNotFoundException
+import com.teamsparta.onlytodo.domain.todo.repository.TodoRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CommentServiceImpl(
-    private val commentRepository: CommentRepository, ) : CommentService {
+    private val commentRepository: CommentRepository,
+    //todo랑 연동에 필요할까봐 일단 아래코드 작성함
+    private val todoRepository: TodoRepository) : CommentService {
 
     override fun getCommentById(commentId: Long): CommentResponse{
         val comment = commentRepository.findByIdOrNull(commentId)
@@ -26,6 +29,7 @@ class CommentServiceImpl(
 
         return commentRepository.save(
             CommentEntity(
+//                password = comment.password,
                 content = comment.content,
             )).toResponse()
     }
