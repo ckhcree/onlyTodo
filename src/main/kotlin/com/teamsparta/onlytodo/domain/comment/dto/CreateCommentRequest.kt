@@ -1,5 +1,7 @@
 package com.teamsparta.onlytodo.domain.comment.dto
 
 class CreateCommentRequest (
-    val content: String
+    val password: Int,
+    val content: String,
+    val todoId: Long,
 )

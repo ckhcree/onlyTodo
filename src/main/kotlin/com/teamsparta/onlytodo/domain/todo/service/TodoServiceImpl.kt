@@ -1,6 +1,5 @@
 package com.teamsparta.onlytodo.domain.todo.service
 
-
 import com.teamsparta.onlytodo.domain.exception.ModelNotFoundException
 import com.teamsparta.onlytodo.domain.todo.dto.CreateTodoRequest
 import com.teamsparta.onlytodo.domain.todo.dto.TodoResponse

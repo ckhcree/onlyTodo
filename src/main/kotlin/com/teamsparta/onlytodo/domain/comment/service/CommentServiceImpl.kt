@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class CommentServiceImpl(
     private val commentRepository: CommentRepository,
-    //todo랑 연동에 필요할까봐 일단 아래코드 작성함
     private val todoRepository: TodoRepository) : CommentService {
 
     override fun getCommentById(commentId: Long): CommentResponse{
@@ -26,12 +25,15 @@ class CommentServiceImpl(
 
     @Transactional
     override fun createComment(comment: CreateCommentRequest): CommentResponse {
-
+        val forcomment = todoRepository.findByIdOrNull(comment.todoId)
+            ?: throw ModelNotFoundException("Comment", "todoId")
         return commentRepository.save(
             CommentEntity(
-//                password = comment.password,
+                password = comment.password,
                 content = comment.content,
-            )).toResponse()
+                todo = forcomment,
+            )
+        ).toResponse()
     }
 
     @Transactional

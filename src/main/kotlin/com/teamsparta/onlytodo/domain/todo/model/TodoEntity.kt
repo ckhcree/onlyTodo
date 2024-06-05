@@ -1,5 +1,6 @@
 package com.teamsparta.onlytodo.domain.todo.model
 
+import com.teamsparta.onlytodo.domain.comment.model.CommentEntity
 import com.teamsparta.onlytodo.domain.todo.dto.TodoResponse
 import jakarta.persistence.*
 import java.time.LocalDateTime
@@ -22,11 +23,10 @@ class TodoEntity (
     var category: String,
 
     @Column(name = "status")
-    var status: Boolean = false
+    var status: Boolean = false,
 
-    //아래부분 주석처리 풀면 아이디가 오류나서 보류..
-//    @OneToMany(mappedBy = "todo", cascade = [(CascadeType.ALL)],orphanRemoval = true,fetch = FetchType.LAZY))
-//    var comments: MutableList<Comment> = mutableListOf()
+    @OneToMany(mappedBy = "todo", cascade = [(CascadeType.ALL)],orphanRemoval = true,fetch = FetchType.LAZY)
+    var comment: MutableList<CommentEntity> = mutableListOf(),
 
     ) {
     @Id
@@ -43,6 +43,6 @@ fun TodoEntity.toResponse()
         content = content,
         createdtime = createdtime,
         category = category,
-        status = status
+        status = status,
     )
 }
